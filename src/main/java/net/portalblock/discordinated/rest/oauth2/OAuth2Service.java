@@ -9,7 +9,10 @@ import retrofit2.http.GET;
  */
 public interface OAuth2Service {
 
-    @GET("oauth2/authorize")
-    Call<AccessToken> authorize(@Field("client_id") String clientId, @Field("scope") String scope, @Field("permissions") int perms);
+    //@GET("oauth2/authorize")
+    //Call<AccessToken> authorize(@Field("client_id") String clientId, @Field("scope") String scope, @Field("permissions") int perms);
+
+    @GET("oauth2/token")
+    Call<AccessToken> getAccessToken(@Field("code") String code, @Field("grant_type") String grantType);
 
 }

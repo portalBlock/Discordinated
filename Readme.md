@@ -19,6 +19,7 @@ Planned:
 * Finish guild endpoints
 * Channel endpoints
 * Create message objects and related
+* Complete OAuth2 implementation
 
 Lacks support for:
 
