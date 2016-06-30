@@ -1,5 +1,9 @@
 package net.portalblock.discordinated.rest.discord;
 
+import net.portalblock.discordinated.rest.discord.queries.CreateGuildChannelParams;
+import net.portalblock.discordinated.rest.discord.queries.CreateGuildParams;
+import net.portalblock.discordinated.rest.discord.queries.ModifyGuildChannelParams;
+import net.portalblock.discordinated.rest.discord.queries.ModifyGuildMemberParams;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -7,6 +11,13 @@ import retrofit2.http.*;
  * Created by portalBlock on 6/27/2016.
  */
 public interface DiscordService {
+
+    /*
+    GATEWAY SECTION
+     */
+
+    @GET("gateway")
+    Call<GatewayResult> getGateway();
 
     /*
     INVITE SECTION
@@ -58,7 +69,7 @@ public interface DiscordService {
      */
 
     @POST("guilds")
-    Call<Guild> createGuild(@Body Guild guild);
+    Call<Guild> createGuild(@Body CreateGuildParams createGuildParams);
 
     @GET("guilds/{guild_id}")
     Call<Guild> getGuild(@Path("guild_id") String guildId);
@@ -73,10 +84,10 @@ public interface DiscordService {
     Call<Channel[]> getGuildChannels(@Path("guild_id") String guildId);
 
     @POST("guilds/{guild_id}/channels")
-    Call<Channel> createGuildChannels(@Path("guild_id") String guildId);
+    Call<Channel> createGuildChannel(@Body CreateGuildChannelParams createGuildChannelParams);
 
     @PATCH("guilds/{guild_id}/channels")
-    Call<Channel> modifyGuildChannels(@Path("guild_id") String guildId, @Body Channel modifiedChannel);
+    Call<Channel> modifyGuildChannel(@Path("guild_id") String guildId, @Body ModifyGuildChannelParams modifyGuildChannelParams);
 
     @GET("guilds/{guild_id}/members/{user_id}")
     Call<Guild.GuildMember> getGuildMember(@Path("guild_id") String guildId, @Path("user_id") String userId);
@@ -85,13 +96,13 @@ public interface DiscordService {
     Call<Guild.GuildMember[]> getGuildMembers(@Path("guild_id") String guildId);
 
     @GET("guilds/{guild_id}/members")
-    Call<Guild.GuildMember[]> getGuildMembers(@Path("guild_id") String guildId, @Query("limit") int limit);
+    Call<Guild.GuildMember[]> getGuildMembers(@Path("guild_id") String guildId, @Query("limit") int limit); //TODO Field or query?
 
     @GET("guilds/{guild_id}/members")
     Call<Guild.GuildMember[]> getGuildMembers(@Path("guild_id") String guildId, @Query("limit") int limit, @Query("offset") int offset);
 
     @PATCH("guilds/{guild_id}/members/{user_id}")
-    Call modifyGuildMember(@Path("guild_id") String guildId, @Path("user_id") String userId, @Body Guild.GuildMember modifiedGuildMember);
+    Call modifyGuildMember(@Path("guild_id") String guildId, @Path("user_id") String userId, @Body ModifyGuildMemberParams modifyGuildMemberParams);
 
     //TODO From here on https://discordapp.com/developers/docs/resources/guild#remove-guild-member
 

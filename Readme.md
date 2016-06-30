@@ -10,16 +10,17 @@ Planned:
 * Message formatting
 * GET /users/{@me}/connections - No structure for the returned object found
 * VoiceState (Guild)
-* Roles (Guild, Guild.Emoji, Guild.GuildMember)
+* Roles (Guild, Guild.Emoji, Guild.GuildMember, ModifyGuildMemberParams)
 * GuildFeatures (Guild)
 * Account (Guild.Integration)
-* Timestamp (Guild.Integration)
+* Timestamp (Guild.Integration, Message)
 * DateTime (same as timestamp?) (Guild.GuildMember, Invite.InviteMetadata)
 * Permission overwrites (Channel)
 * Finish guild endpoints
 * Channel endpoints
 * Create message objects and related
 * Complete OAuth2 implementation
+* File uploads
 
 Lacks support for:
 

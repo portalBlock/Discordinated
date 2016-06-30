@@ -24,6 +24,11 @@
             <artifactId>lombok</artifactId>
             <version>1.14.8</version>
         </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>3.3.0</version>
+        </dependency>
         <!--This dependency is not used for now as the library does not yet support it-->
         <!--dependency>
             <groupId>com.google.oauth-client</groupId>
@@ -75,6 +80,15 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
