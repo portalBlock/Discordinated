@@ -1,9 +1,6 @@
 package net.portalblock.discordinated.rest.discord;
 
-import net.portalblock.discordinated.rest.discord.queries.CreateGuildChannelParams;
-import net.portalblock.discordinated.rest.discord.queries.CreateGuildParams;
-import net.portalblock.discordinated.rest.discord.queries.ModifyGuildChannelParams;
-import net.portalblock.discordinated.rest.discord.queries.ModifyGuildMemberParams;
+import net.portalblock.discordinated.rest.discord.queries.*;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -111,4 +108,8 @@ public interface DiscordService {
      */
 
     //TODO From here on https://discordapp.com/developers/docs/resources/channel#get-channel
+
+    //TODO Order this properly, its just here for testing now.
+    @POST("channels/{channel_id}/messages")
+    Call<Message> createMessage(@Path("channel_id") String channelId, @Body CreateMessageParams createMessageParams);
 }

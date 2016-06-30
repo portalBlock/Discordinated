@@ -1,18 +1,13 @@
 package net.portalblock.discordinated;
 
-import com.google.gson.Gson;
-import lombok.Getter;
 import net.portalblock.discordinated.rest.discord.DiscordService;
 import net.portalblock.discordinated.rest.oauth2.AccessToken;
 import net.portalblock.discordinated.rest.oauth2.OAuth2Service;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.io.IOException;
 
 /**
  * Created by portalBlock on 6/27/2016.
@@ -50,7 +45,7 @@ public class Discordinated {
         return oAuthService;
     }
 
-    public DiscordService buildDiscordinatedService(final AccessToken accessToken) {
+    public DiscordService buildDiscordinatedService(final AccessToken accessToken, Interceptor... interceptors) {
         if(discordService == null) {
             if(accessToken == null)
                 throw new NullPointerException("Authentication token is empty.");
@@ -59,9 +54,7 @@ public class Discordinated {
                     .baseUrl(baseUrl)
                     .addConverterFactory(GsonConverterFactory.create());
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-            httpClient.addInterceptor(new Interceptor() {
-                @Override
-                public Response intercept(Chain chain) throws IOException {
+            httpClient.addInterceptor(chain -> {
                     Request original = chain.request();
                     System.out.println("Authorization: " + accessToken.getTokenType() + " " + accessToken.getAccessToken());
                     Request.Builder requestBuilder = original.newBuilder()
@@ -70,8 +63,9 @@ public class Discordinated {
                             .header("User-Agent", userAgent)
                             .method(original.method(), original.body());
                     return chain.proceed(requestBuilder.build());
-                }
             });
+            for(Interceptor i : interceptors)
+                httpClient.addInterceptor(i);
             discordService = (retrofit.client(httpClient.build()).build()).create(DiscordService.class);
             //End Credit: https://futurestud.io/blog/oauth-2-on-android-with-retrofit
         }
