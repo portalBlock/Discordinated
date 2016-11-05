@@ -56,7 +56,6 @@ public class Discordinated {
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
             httpClient.addInterceptor(chain -> {
                     Request original = chain.request();
-                    System.out.println("Authorization: " + accessToken.getTokenType() + " " + accessToken.getAccessToken());
                     Request.Builder requestBuilder = original.newBuilder()
                             .header("Accept", "application/json")
                             .header("Authorization", accessToken.getTokenType() + " " + accessToken.getAccessToken())

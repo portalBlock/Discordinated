@@ -9,4 +9,6 @@ public class GatewayResult {
 
     @Getter private String url;
 
+    @Getter private Integer shards;
+
 }

@@ -16,6 +16,9 @@ public interface DiscordService {
     @GET("gateway")
     Call<GatewayResult> getGateway();
 
+    @GET("gateway/bot")
+    Call<GatewayResult> getBotGateway();
+
     /*
     INVITE SECTION
      */
