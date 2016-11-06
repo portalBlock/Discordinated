@@ -23,7 +23,7 @@ public class Message {
 
     @Getter private Channel.Embed[] embeds;
 
-    @Getter private int nonce;
+    @Getter private String nonce;
 
     @Getter private boolean pinned;
 

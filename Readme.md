@@ -21,6 +21,8 @@ Planned:
 * Create message objects and related
 * Complete OAuth2 implementation
 * File uploads
+* Channel Create/Delete events - differentiate DM/Guild channels
+* Handle extra guild ID in Guild Ban Add/Remove events
 
 Lacks support for:
 

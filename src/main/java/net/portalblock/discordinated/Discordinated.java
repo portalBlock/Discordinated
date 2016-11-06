@@ -1,5 +1,6 @@
 package net.portalblock.discordinated;
 
+import lombok.Getter;
 import net.portalblock.discordinated.rest.discord.DiscordService;
 import net.portalblock.discordinated.rest.oauth2.AccessToken;
 import net.portalblock.discordinated.rest.oauth2.OAuth2Service;
@@ -16,7 +17,7 @@ public class Discordinated {
 
     private OAuth2Service oAuthService;
 
-    private DiscordService discordService;
+    @Getter private DiscordService discordService;
 
     private String baseUrl, userAgent;
 
